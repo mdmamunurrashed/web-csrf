@@ -11,22 +11,37 @@ This lab teaches you how to exploit CSRF vulnerabilities and defend against them
 
 ## Setup
 
-### 1. Download Lab Files
+### 1. Install Requirements
+```bash
+# Have a complete Lab Setup, Visit https://seedsecuritylabs.org/
+# Install Docker & Docker Compose
+sudo apt update
+sudo apt install -y docker.io docker-compose mysql-client
+
+# Add user to docker group
+sudo usermod -aG docker $USER
+sudo reboot
+```
+
+### 2. Download and Extract Lab Files
+- (Optional) Download `Labsetup.zip` from https://seedsecuritylabs.org/
+- Extract and navigate to folder:
 ```bash
 unzip Labsetup.zip
 cd Labsetup
 ```
 
-### 2. Configure Hosts
+### 3. Configure Hosts
 ```bash
 sudo nano /etc/hosts
+
 # Add these lines:
 10.9.0.5 www.seed-server.com
 10.9.0.5 www.example32.com
 10.9.0.105 www.attacker32.com
 ```
 
-### 3. Fix Container Conflicts (if needed)
+### 4. Fix Container Conflicts (if needed)
 ```bash
 docker-compose down
 docker rm -f mysql-10.9.0.6
@@ -35,10 +50,9 @@ docker rm -f mysql-10.9.0.6
 
 docker-compose down
 docker rm -f PUT_CONTAINER_ID_HERE
-
 ```
 
-### 4. Start Containers
+### 5. Start Containers
 ```bash
 docker-compose up -d
 
@@ -47,14 +61,14 @@ docker-compose up -d
 dcup
 ```
 
-### 5. Check Containers Running
+### 6. Check Containers Running
 ```bash
 docker ps
 ```
 
 You should see 3 containers: elgg, mysql, attacker
 
-### 6. Open Website
+### 7. Open Website
 Open browser: `http://www.seed-server.com`
 
 **User Accounts:**
